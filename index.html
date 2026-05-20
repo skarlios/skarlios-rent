@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SCARLIOS Rent A Car</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Montserrat',sans-serif;background:#050505;color:#eee}
+    a{text-decoration:none;color:inherit}
+
+    :root{
+      --gold:#c99a32;
+      --gold2:#f0c868;
+      --dark:#070707;
+      --panel:#101010;
+      --border:rgba(201,154,50,.55);
+    }
+
+    .page{max-width:1280px;margin:0 auto;background:#080808;box-shadow:0 0 80px rgba(0,0,0,.8)}
+
+    /* HERO */
+    .hero{
+      min-height:640px;
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 82% 45%,rgba(201,154,50,.22),transparent 24%),
+        linear-gradient(90deg,rgba(0,0,0,.98) 0%,rgba(0,0,0,.76) 43%,rgba(0,0,0,.28) 100%),
+        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1800&auto=format&fit=crop') center/cover;
+    }
+    .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 70%,#080808 100%)}
+
+    header{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-start;padding:28px 42px 0}
+
+    .brand{width:430px;max-width:42vw}
+    .car-line{height:72px;position:relative;margin-bottom:6px}
+    .car-line svg{width:100%;height:100%;filter:drop-shadow(0 3px 6px #000)}
+    .brand-title{font-size:58px;line-height:.9;font-weight:800;letter-spacing:5px;text-transform:uppercase;text-shadow:0 5px 18px #000}
+    .brand-title .gold{color:var(--gold)}
+    .brand-title .silver{background:linear-gradient(#fff,#8f8f8f);-webkit-background-clip:text;color:transparent}
+    .brand-sub{margin-top:18px;font-size:18px;letter-spacing:13px;text-align:center;color:#fff}
+    .brand-rule{display:flex;align-items:center;gap:15px;margin-top:8px}
+    .brand-rule:before,.brand-rule:after{content:"";height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);flex:1}
+
+    nav{display:flex;gap:36px;padding-top:38px;font-size:15px;font-weight:600;text-transform:uppercase}
+    nav a{position:relative;color:#eee}
+    nav a.active,nav a:hover{color:#ffd25f}
+    nav a.active:after,nav a:hover:after{content:"";position:absolute;left:0;right:0;bottom:-13px;height:3px;background:#d8a833}
+
+    .hero-cars{position:absolute;z-index:1;right:35px;bottom:58px;width:930px;max-width:78%;height:360px}
+    .hero-car{position:absolute;bottom:0;filter:drop-shadow(0 28px 35px rgba(0,0,0,.9))}
+    .hero-car.left{left:0;width:55%;z-index:2}
+    .hero-car.right{right:0;width:50%;z-index:1;filter:brightness(.68) drop-shadow(0 28px 35px rgba(0,0,0,.9))}
+
+    /* SECTIONS */
+    section{padding:22px 32px}
+    .title{text-align:center;margin:0 0 16px;color:var(--gold);font-size:42px;font-weight:800;letter-spacing:3px;text-transform:uppercase}
+    .title:after{content:"";display:block;width:70px;height:3px;background:var(--gold);margin:12px auto 0}
+
+    /* FLEET */
+    .fleet{background:radial-gradient(circle at 50% 20%,rgba(255,255,255,.06),transparent 34%),#090909;padding-top:20px}
+    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+    .card{border:1px solid var(--border);border-radius:14px;background:radial-gradient(circle at 50% 20%,rgba(255,255,255,.08),transparent 50%),linear-gradient(180deg,#141414,#090909);padding:24px 28px 20px;min-height:500px}
+    .card h3{text-align:center;font-size:24px;font-weight:600;letter-spacing:.6px;margin-bottom:18px;text-transform:uppercase}
+    .car-img{height:210px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+    .car-img img{max-width:112%;max-height:230px;object-fit:contain;filter:drop-shadow(0 18px 18px rgba(0,0,0,.8))}
+    .spec{display:flex;align-items:center;gap:16px;margin:13px 0;font-size:20px;color:#eee;text-transform:uppercase}
+    .ico{width:25px;height:25px;color:var(--gold);display:inline-flex;align-items:center;justify-content:center}
+    .more{display:block;width:190px;margin:18px auto 0;text-align:center;padding:13px 22px;border-radius:7px;background:linear-gradient(135deg,#b98422,#f5d168,#b98422);color:white;font-weight:600;text-shadow:0 1px 2px #5c3b00;box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
+
+    /* CONTACT */
+    .contact-wrap{border:1px solid var(--border);border-radius:14px;background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.06),transparent 40%),#0b0b0b;margin-top:22px;padding:16px 26px;display:grid;grid-template-columns:44% 56%;gap:26px}
+    .contact-title{text-align:center;color:var(--gold);font-size:30px;font-weight:800;text-transform:uppercase;margin:8px 0 24px}
+    .contact-title:after{content:"";display:block;width:58px;height:2px;background:var(--gold);margin:10px auto 0}
+    .phone-row{display:flex;align-items:center;gap:20px;margin-bottom:20px}
+    .round{width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#b98422,#f6d56e,#9b6b18);color:white;flex:0 0 auto}
+    .phone-number{font-size:36px;font-weight:600;letter-spacing:2px}
+    .action-row{display:flex;gap:14px;margin-left:88px;margin-bottom:34px}
+    .action{padding:14px 18px;border-radius:7px;font-size:17px;font-weight:600;display:flex;align-items:center;gap:8px;color:white}
+    .call{background:#188d43}.viber{background:#6b38a6}.wa{background:#22963a}
+    .divider{height:1px;background:rgba(201,154,50,.45);margin:0 0 22px}
+    .address-row{display:flex;align-items:center;gap:22px;font-size:25px;color:#ddd;margin-bottom:16px}
+    .map-btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#b98422,#f5d168,#b98422);padding:12px 22px;border-radius:6px;margin-left:88px;font-size:17px;font-weight:600;color:white}
+    .map{position:relative;border-radius:8px;overflow:hidden;min-height:380px;background:#1d2a21}
+    .map iframe{width:100%;height:100%;border:0;filter:grayscale(.35) brightness(.7) contrast(1.25)}
+    .map-note{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.82);border-radius:8px;padding:20px 24px;display:flex;gap:18px;align-items:center;font-size:22px;line-height:1.55;max-width:380px}
+    .tap{font-size:58px;line-height:1}
+
+    /* FEATURES */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(201,154,50,.28);margin-top:18px;padding:25px 40px 22px;gap:30px}
+    .feature{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:center;position:relative}
+    .feature:not(:last-child):after{content:"";position:absolute;right:-15px;top:6px;bottom:6px;width:1px;background:rgba(201,154,50,.55)}
+    .feature h4{color:var(--gold);font-size:17px;margin-bottom:5px;text-transform:uppercase}.feature p{font-size:15px;color:#cfcfcf;line-height:1.35}
+
+    footer{text-align:center;padding:0 0 22px;color:#bbb}
+    footer .foot-logo{font-size:22px;font-weight:800;letter-spacing:7px;margin-bottom:8px}.foot-logo span{color:var(--gold)}
+
+    @media(max-width:900px){
+      header{padding:22px;display:block}.brand{max-width:none;width:340px}nav{gap:18px;flex-wrap:wrap;padding-top:24px}.hero{min-height:720px}.hero-cars{max-width:110%;width:760px;right:-90px;bottom:65px}.cards{grid-template-columns:1fr}.contact-wrap{grid-template-columns:1fr}.features{grid-template-columns:1fr}.feature:after{display:none}.phone-number{font-size:28px}.action-row,.map-btn{margin-left:0}.title{font-size:34px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" id="home">
+      <header>
+        <div class="brand">
+          <img src="logo3.png" alt="SCARLIOS RENT A CAR" style="width:100%;display:block;filter:drop-shadow(0 10px 25px rgba(0,0,0,.9));">
+        </div>
+
+        <div style="position:absolute;top:8px;right:14px;z-index:5;display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.32);padding:4px 9px;border:1px solid rgba(255,255,255,.12);border-radius:30px;backdrop-filter:blur(5px);opacity:.82;">
+          <span style="font-size:18px;line-height:1;">🇬🇷</span>
+          <span style="font-size:10px;letter-spacing:1.2px;color:#f5f5f5;font-weight:600;">GREECE</span>
+        </div>
+
+        <nav>
+          <a class="active" href="#home">ΑΡΧΙΚΗ</a>
+          <a href="#fleet">ΟΧΗΜΑΤΑ</a>
+          <a href="#services">ΥΠΗΡΕΣΙΕΣ</a>
+          <a href="#about">ΣΧΕΤΙΚΑ</a>
+          <a href="#contact">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+        </nav>
+      </header>
+
+    </section>
+
+    <section class="fleet" id="fleet">
+      <h1 class="title">Ο ΣΤΟΛΟΣ ΜΑΣ</h1>
+
+      <div class="cards">
+        <article class="card">
+          <h3>NISSAN QASHQAI</h3>
+          <div class="car-img"><img src="qashqai.png" alt="Nissan Qashqai 2016"></div>
+          <div class="spec"><span class="ico">⛽</span>1.200cc</div>
+          <div class="spec"><span class="ico">⚙</span>ΑΥΤΟΜΑΤΟ</div>
+          <div class="spec"><span class="ico">⛽</span>ΒΕΝΖΙΝΗ</div>
+          
+<a class="more" href="#contact">ΑΠΟ 49€</a>
+        </article>
+
+        <article class="card">
+          <h3>OPEL MOKKA</h3>
+          <div class="car-img"><img src="mokka.png" alt="Opel Mokka 2016"></div>
+          <div class="spec"><span class="ico">⛽</span>1.600cc</div>
+          <div class="spec"><span class="ico">⚙</span>ΧΕΙΡΟΚΙΝΗΤΟ</div>
+          <div class="spec"><span class="ico">⛽</span>DIESEL</div>
+          <a class="more" href="#contact">ΑΠΟ 45€</a>
+        </article>
+
+        <article class="card">
+          <h3>MERCEDES C250</h3>
+          <div class="car-img"><img src="mercedes.png" alt="Mercedes C250 2014"></div>
+          <div class="spec"><span class="ico">⛽</span>2.200cc</div>
+          <div class="spec"><span class="ico">⚙</span>ΑΥΤΟΜΑΤΟ</div>
+          <div class="spec"><span class="ico">⛽</span>DIESEL</div>
+          <a class="more" onclick="alert('ΓΙΑ ΝΑ ΕΛΕΓΞΕΤΕ ΤΗ ΔΙΑΘΕΣΙΜΟΤΗΤΑ ΚΑΙ ΝΑ ΜΙΣΘΩΣΕΤΕ ΤΟ ΑΥΤΟΚΙΝΗΤΟ, ΕΠΙΚΟΙΝΩΝΗΣΤΕ ΜΕ ΜΗΝΥΜΑ Ή ΤΗΛΕΦΩΝΟ.')">ΑΠΟ 99€</a>
+        </article>
+      
+<article class="card">
+<h3>OPEL VIVARO 9 ΘΕΣΙΟ</h3>
+<div class="car-img"><img src="vivaro.png" alt="Opel Vivaro"></div>
+<div class="spec"><span class="ico">👥</span>9 ΘΕΣΕΙΣ</div>
+<div class="spec"><span class="ico">⚙</span>ΧΕΙΡΟΚΙΝΗΤΟ</div>
+<div class="spec"><span class="ico">⛽</span>DIESEL</div>
+<a class="more">ΕΡΧΕΤΑΙ ΣΥΝΤΟΜΑ</a>
+</article>
+</div>
+
+      <div class="contact-wrap" id="contact">
+        <div>
+          <h2 class="contact-title">ΕΠΙΚΟΙΝΩΝΙΑ</h2>
+          <div class="phone-row">
+            <div class="round">☎</div>
+            <div class="phone-number">+30 6942885829</div>
+          </div>
+          <div class="action-row">
+            <a class="action call" href="tel:+306942885829">☎ ΚΛΗΣΗ</a>
+            <a class="action viber" href="viber://chat?number=%2B306942885829">☏ VIBER</a>
+            <a class="action wa" href="https://wa.me/306942885829">✆ WHATSAPP</a>
+          </div>
+          
+<div style="margin:18px 0 14px 88px;padding:14px;border-left:3px solid #c99a32;background:#111;border-radius:6px;color:#ddd;max-width:420px;">
+<b style="color:#f0c868;">ΕΛΕΓΧΟΣ ΔΙΑΘΕΣΙΜΟΤΗΤΑΣ</b><br><br>
+Για πληροφορίες, διαθεσιμότητα και κράτηση επικοινωνήστε μαζί μας τηλεφωνικά ή μέσω WhatsApp.
+</div>
+
+<div style="margin-left:88px;color:#d7d7d7;font-size:15px;line-height:1.6;">
+⚡ <b style="color:#f0c868;">ΓΡΗΓΟΡΗ ΑΝΤΑΠΟΚΡΙΣΗ</b><br>
+Απαντάμε συνήθως σε κλήσεις και μηνύματα εντός περίπου 5 λεπτών.
+</div>
+
+<div class="divider"></div>
+          <div class="address-row">
+            <div class="round">⌖</div>
+            <div>SCARLIOS AUTO • Νέα Ζίχνη Σερρών</div>
+          </div>
+          <a class="map-btn" href="https://maps.google.com/?q=SCARLIOS+AUTO+Νέα+Ζίχνη+Σερρών" target="_blank">▰ ΑΝΟΙΓΜΑ ΧΑΡΤΗ</a>
+        </div>
+
+        <div class="map">
+          <iframe src="https://www.google.com/maps?q=SCARLIOS+AUTO+Νέα+Ζίχνη+Σερρών&output=embed"></iframe>
+          <div class="map-note"><div class="tap">☝</div><div>Πατήστε στον χάρτη<br>για να ανοίξει στον<br>χάρτη του κινητού σας</div></div>
+        </div>
+      </div>
+
+      <div class="features" id="services">
+        <div class="feature"><div class="round">♢</div><div><h4>ΑΣΦΑΛΕΙΑ & ΑΞΙΟΠΙΣΤΙΑ</h4><p>Η ασφάλειά σας είναι η προτεραιότητά μας.</p></div></div>
+        <div class="feature"><div class="round">✈</div><div><h4>ΥΠΗΡΕΣΙΕΣ</h4><p>Παραλαβή και παράδοση οχήματος στο Αεροδρόμιο Μακεδονία Θεσσαλονίκης κατόπιν συνεννόησης <span style="opacity:.7;font-size:13px;">(με extra χρέωση)</span>.</p></div></div>
+        <div class="feature"><div class="round">◈</div><div><h4>ΑΝΤΑΓΩΝΙΣΤΙΚΕΣ ΤΙΜΕΣ</h4><p>Ποιότητα υπηρεσιών στις καλύτερες τιμές.</p></div></div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="foot-logo">s<span>CAR</span>lios RENT A CAR</div>
+      <p>© 2024 sCARlios Rent a Car. All rights reserved.</p>
+    </footer>
+  </main>
+</body>
+</html>
